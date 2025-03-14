@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ExameDAO {
 
+    // Inserindo na base de dados - INSERT
     public void inserir(Exame exame) throws SQLException {
         String sql = "INSERT INTO exame (id_paciente, id_medico, tipo_exame, resultado, data_exame, observacoes) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -23,6 +24,7 @@ public class ExameDAO {
         }
     }
 
+    // Exibiindo toda a tabela - SELECT
     public List<Exame> listarTodos() throws SQLException {
         List<Exame> exames = new ArrayList<>();
         String sql = "SELECT * FROM exame";
@@ -50,6 +52,7 @@ public class ExameDAO {
         return exames;
     }
 
+    // Buscando uma linha específica - SELECT * FROM... WHERE...
     public Exame buscarPorId(int idExame) throws SQLException {
         String sql = "SELECT * FROM exame WHERE id_exame = ?";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -72,6 +75,7 @@ public class ExameDAO {
         return null;
     }
 
+    // Atualizando a base de dados - UPDATE
     public void atualizar(Exame exame) throws SQLException {
         String sql = "UPDATE exame SET id_paciente = ?, id_medico = ?, tipo_exame = ?, resultado = ?, data_exame = ?, observacoes = ? WHERE id_exame = ?";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -87,6 +91,7 @@ public class ExameDAO {
         }
     }
 
+    // Removendo da base de dados - DELETE
     public void deletar(int idExame) throws SQLException {
         String sql = "DELETE FROM exame WHERE id_exame = ?";
         try (Connection conn = ConexaoPostgres.conectar();

@@ -1,4 +1,3 @@
-// PessoaDAO.java
 package org.example;
 
 import java.sql.Connection;

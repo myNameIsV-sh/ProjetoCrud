@@ -1,6 +1,6 @@
 package org.example;
 
-public class Exame { // Removi o "public" para evitar erro de nome do arquivo
+public class Exame {
     private int id_exame;
     private int id_paciente;
     private int id_medico;

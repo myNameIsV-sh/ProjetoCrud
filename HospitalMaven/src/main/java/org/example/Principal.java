@@ -23,8 +23,6 @@ public class Principal {
                     "Rua B, 456"
             );
 
-
-
             // Instanciando DAOs
             MedicoDAO medicoDAO = new MedicoDAO();
             PacienteDAO pacienteDAO = new PacienteDAO();

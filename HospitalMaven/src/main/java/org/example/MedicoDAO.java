@@ -1,4 +1,3 @@
-// MedicoDAO.java
 package org.example;
 
 import java.sql.Connection;
@@ -14,6 +13,7 @@ public class MedicoDAO extends PessoaDAO<Medico> {
         super("medico");
     }
 
+    // Inserindo na base de dados - INSERT
     public void inserirCompleto(Medico medico) throws SQLException {
         String sql = "INSERT INTO medico (nome, telefone, email, especialidade, crm) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -33,6 +33,7 @@ public class MedicoDAO extends PessoaDAO<Medico> {
     }
 
 
+    // Exibindo toda a tabela - SELECT
     public List<Medico> listarTodos() throws SQLException {
         List<Medico> medicos = new ArrayList<>();
         String sql = "SELECT * FROM medico";
@@ -56,6 +57,7 @@ public class MedicoDAO extends PessoaDAO<Medico> {
         return medicos;
     }
 
+    // Buscando uma linha específica - SELECT * FROM... WHERE...
     public Medico buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM medico WHERE id_medico = ?";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -77,6 +79,7 @@ public class MedicoDAO extends PessoaDAO<Medico> {
         return null;
     }
 
+    // Atualizando a base de dados - UPDATE
     public void atualizar(Medico medico) throws SQLException {
         String sql = "UPDATE medico SET nome = ?, telefone = ?, email = ?, especialidade = ?, crm = ? WHERE id_medico = ?";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -90,11 +93,11 @@ public class MedicoDAO extends PessoaDAO<Medico> {
             ps.executeUpdate();
         }
     }
-    // O método agora usa a classe ConexaoPostgres para conectar ao banco de dados.
+
+    // Removendo da base de dados - DELETE
     public void deletar(int idMedico) throws SQLException {
-        // Obtendo a conexão usando a classe ConexaoPostgres
         String sql = "DELETE FROM medico WHERE id_medico = ?";
-        try (Connection conn = ConexaoPostgres.conectar(); // Aqui estamos usando a conexão que sua classe ConexaoPostgres fornece.
+        try (Connection conn = ConexaoPostgres.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idMedico);
             stmt.executeUpdate();

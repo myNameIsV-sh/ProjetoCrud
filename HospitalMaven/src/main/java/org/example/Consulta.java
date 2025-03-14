@@ -1,6 +1,6 @@
 package org.example;
 
-public class Consulta { // Removi o "public"
+public class Consulta {
     private int id_consulta;
     private int id_paciente;
     private int id_medico;

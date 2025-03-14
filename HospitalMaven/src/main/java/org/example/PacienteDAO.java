@@ -1,4 +1,3 @@
-// PacienteDAO.java
 package org.example;
 
 import java.sql.Connection;
@@ -14,6 +13,7 @@ public class PacienteDAO extends PessoaDAO<Paciente> {
         super("paciente");
     }
 
+    // Inserindo na base de dados - INSERT
     public void inserirCompleto(Paciente paciente) throws SQLException {
         String sql = "INSERT INTO paciente (nome, telefone, email, sexo, endereco) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -28,6 +28,7 @@ public class PacienteDAO extends PessoaDAO<Paciente> {
         }
     }
 
+    // Exibindo toda a tabela - SELECT
     public List<Paciente> listarTodos() throws SQLException {
         List<Paciente> pacientes = new ArrayList<>();
         String sql = "SELECT * FROM paciente";
@@ -50,6 +51,8 @@ public class PacienteDAO extends PessoaDAO<Paciente> {
         }
         return pacientes;
     }
+
+    // Buscando uma linha específica - SELECT * FROM... WHERE...
     public Paciente buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM paciente WHERE id_paciente = ?";
         try (Connection conn = ConexaoPostgres.conectar();
@@ -71,14 +74,30 @@ public class PacienteDAO extends PessoaDAO<Paciente> {
         return null;
     }
 
+    // Atualizando a base de dados - UPDATE
+    public void atualizar(Paciente paciente) throws SQLException {
+        String sql = "UPDATE paciente SET nome = ?, telefone = ?, email = ?, sexo = ?, endereco = ? VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = ConexaoPostgres.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, paciente.getNome());
+            ps.setString(2, paciente.getTelefone());
+            ps.setString(3, paciente.getEmail());
+            ps.setString(4, paciente.getSexo());
+            ps.setString(5, paciente.getEndereco());
+            ps.setInt(6, paciente.getId_paciente());
+            ps.executeUpdate();
+        }
+    }
+
+    // Removendo da base de dados - DELETE
     public void deletar(int idPaciente) throws SQLException {
         String sql = "DELETE FROM paciente WHERE id_paciente = ?";
-        try (Connection conn = ConexaoPostgres.conectar(); // Conectando ao banco
+        try (Connection conn = ConexaoPostgres.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, idPaciente); // Definindo o ID do paciente para exclusão
-            stmt.executeUpdate(); // Executando a atualização
+            stmt.setInt(1, idPaciente);
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new SQLException("Erro ao excluir o paciente", e); // Tratando a exceção
+            throw new SQLException("Erro ao excluir o paciente", e);
         }
     }
 }
