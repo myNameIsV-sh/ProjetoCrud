@@ -1,13 +1,13 @@
 package org.example;
 
-class Consulta { // Removi o "public"
+public class Consulta { // Removi o "public"
     private int id_consulta;
     private int id_paciente;
     private int id_medico;
     private String dataHora;
     private String motivo;
 
-    public Consulta(int id_consulta, Paciente paciente, Medicos medico, String dataHora, String motivo) {
+    public Consulta(int id_consulta, Paciente paciente, Medico medico, String dataHora, String motivo) {
         this.id_consulta = id_consulta;
         this.id_paciente = paciente.getId_paciente();
         this.id_medico = medico.getId_medico();

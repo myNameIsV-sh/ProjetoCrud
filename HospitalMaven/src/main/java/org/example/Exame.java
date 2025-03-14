@@ -1,6 +1,6 @@
 package org.example;
 
-class Exame { // Removi o "public" para evitar erro de nome do arquivo
+public class Exame { // Removi o "public" para evitar erro de nome do arquivo
     private int id_exame;
     private int id_paciente;
     private int id_medico;
@@ -9,8 +9,17 @@ class Exame { // Removi o "public" para evitar erro de nome do arquivo
     private String data_exame;
     private String observacoes;
 
-    public Exame(int id_exame, Paciente paciente, Medicos medico, String tipo_exame, String resultado, String data_exame, String observacoes) {
+    public Exame(int id_exame, Paciente paciente, Medico medico, String tipo_exame, String resultado, String data_exame, String observacoes) {
         this.id_exame = id_exame;
+        this.id_paciente = paciente.getId_paciente();
+        this.id_medico = medico.getId_medico();
+        this.tipo_exame = tipo_exame;
+        this.resultado = resultado;
+        this.data_exame = data_exame;
+        this.observacoes = observacoes;
+    }
+
+    public Exame(Paciente paciente, Medico medico, String tipo_exame, String resultado, String data_exame, String observacoes) {
         this.id_paciente = paciente.getId_paciente();
         this.id_medico = medico.getId_medico();
         this.tipo_exame = tipo_exame;

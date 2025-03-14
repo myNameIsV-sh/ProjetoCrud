@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoPostgres {
-    private static final String URL = "jdbc:postgresql://localhost:5432/seu_banco";
-    private static final String USUARIO = "seu_usuario";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USUARIO = "postgres";
     private static final String SENHA = "12345";
 
     public static Connection conectar() {

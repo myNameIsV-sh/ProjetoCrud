@@ -1,11 +1,11 @@
 package org.example;
 
-public class Medicos extends Pessoa {
+public class Medico extends Pessoa {
     private int id_medico;
     private String especialidade;
     private String crm;
 
-    public Medicos(String nome, String telefone, String email, int id_medico, String especialidade, String crm) {
+    public Medico(String nome, String telefone, String email, int id_medico, String especialidade, String crm) {
         super(nome, telefone, email);
         this.id_medico = id_medico;
         this.especialidade = especialidade;
